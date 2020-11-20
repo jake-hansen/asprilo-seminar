@@ -14,4 +14,24 @@ is changed to
 
 This change allows the position of the robot, R, to exist not only at the horizon, but at any time.
 
-### Task 2
+## Exercise 1 task 2
+
+There are two changes that is made to the `action-M.lp` file.
+
+The rule
+
+```direction((X,Y)) :- X=-1..1, Y=-1..1, |X+Y|=1.```
+
+was changed to
+
+```direction((X,Y)) :- X=-1..1, Y=-1..1, { |X+Y|=1 ; |X+Y|=2 ; X+Y=0 }.```
+
+The rule
+
+```nextto((X,Y),(X',Y'),(X+X',Y+Y')) :- position((X,Y)), direction((X',Y')), position((X+X',Y+Y')).```
+
+was changed to
+
+```nextto((X,Y),(X',Y'),(X+X',Y+Y')) :- position((X,Y)), direction((X',Y')), position((X+X',Y+Y')), (X', Y') != (0,0).```
+
+This change allows the diagonal direction. This also ensures that diagonal squares are considered adjacent. The second rule addition ensures that the same square is not considered adjacent to itself.
