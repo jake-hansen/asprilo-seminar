@@ -35,3 +35,13 @@ was changed to
 ```nextto((X,Y),(X',Y'),(X+X',Y+Y')) :- position((X,Y)), direction((X',Y')), position((X+X',Y+Y')), (X', Y') != (0,0).```
 
 This change allows the diagonal direction. This also ensures that diagonal squares are considered adjacent. The second rule addition ensures that the same square is not considered adjacent to itself.
+
+## Exercise 2
+
+There is one change that is made to the `action-M-mod.lp` file. 
+
+The rule 
+
+```:- moveto((X',Y'), (X,Y), T), |Y'-Y/X'-X| = 1, |Y-Y'/X-X'| = 1.```
+
+was added.This rule checks the slope between two coordinates and prevents the movement if the slope is equal to one, meaning that the two coordinates are diagonal to each other.
