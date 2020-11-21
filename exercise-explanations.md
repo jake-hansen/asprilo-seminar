@@ -45,3 +45,33 @@ The rule
 ```:- moveto((X',Y'), (X,Y), T), |Y'-Y/X'-X| = 1, |Y-Y'/X-X'| = 1.```
 
 was added.This rule checks the slope between two coordinates and prevents the movement if the slope is equal to one, meaning that the two coordinates are diagonal to each other.
+
+## Exercise 3 task 1
+
+The file `sides.lp` was added.
+
+The following code was put into the file:
+
+#include "../input.lp".
+
+% Determine left/right x-coordinates
+side(X, left) :- SX = #max{ X' : position((X',_)) },  X<=(SX+1)/2, position((X,_)).
+side(X, right) :- SX = #max{ X' : position((X',_)) }, X> (SX+1)/2, position((X,_)).
+
+% Group robots into left/right side wrt their initial position
+leftRobot :- position((X,_)), side(X, left).
+rightRobot :- position((X,_)), side(X, right).
+
+% Forbid robots to occupy a position on the other side
+leftRobot :- position((X,_)), not side(X, right).
+rightRobot :- position((X,_)), not side(X, left).
+
+This code categorizes the robots based on their X position into either left or right and once they are categorized they cannot enter spaces of the opposite catagorization.
+
+## Exercise 3 task 2
+
+unconfirmed
+
+## Exercise 4
+
+unconfirmed
